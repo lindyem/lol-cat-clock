@@ -9,13 +9,16 @@ var napTime = lunchTime + 2; // 2PM
 var imageText = document.getElementById("timeEvent");
 var image = document.getElementById("lolcat");
 
+
+var getCatPic = function (){
+
 if (time == partyTime){
 	image.src = "https://s3.amazonaws.com/media.skillcrush.com/skillcrush/wp-content/uploads/2016/09/cat4.jpg";
     messageText = "IZ PARTEE TIME!!";
 	
 } else if (time == napTime) {
 	image.src = "https://s3.amazonaws.com/media.skillcrush.com/skillcrush/wp-content/uploads/2016/09/cat3.jpg";
-    messageText = "IZ NAP TIME...";
+    messageText = "IZ NAP TIME…";
 } else if (time == lunchTime) {
 	image.src = "https://s3.amazonaws.com/media.skillcrush.com/skillcrush/wp-content/uploads/2016/09/cat2.jpg";
     messageText = "IZ NOM NOM NOM TIME!!";
@@ -34,45 +37,10 @@ if (time == partyTime){
 }
 imageText.innerHTML = messageText;
 
+};
 
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
+getCatPic();
+
 var showCurrentTime = function()
 {
     // display the string on the webpage
@@ -115,3 +83,51 @@ var showCurrentTime = function()
 
 setInterval( showCurrentTime, 1000);
 
+var isPartyTime = false;
+var partyEvent = function(){
+   //check isPartyTime
+   if (isPartyTime === false){ 
+        partyTimeButton.innerText = "PARTY TIME!";
+        partyTimeButton.style.backgroundColor = "teal";
+        isPartyTime = true; 
+        // set time to partyTime so the lolCat clock 
+        //image and message update to the partyTime image and message
+        time = partyTime; 
+    } else { 
+        partyTimeButton.innerText = "PARTY OVER!";
+        isPartyTime = false; 
+        partyTimeButton.style.backgroundColor="pink";
+        time = new Date().getHours(); 
+    }
+ 
+};
+var partyTimeButton = document.getElementById("partyTimeButton");
+
+partyTimeButton.addEventListener("click", partyEvent);
+
+var wakeUpTimeSelector = document.getElementById("wakeUpTimeSelector");
+
+var wakeUpEvent = function(){
+    wakeupTime = wakeUpTimeSelector.value;
+    getCatPic();
+};
+
+wakeUpTimeSelector.addEventListener("change", wakeUpEvent);
+
+var lunchTimeSelector = document.getElementById("lunchTimeSelector");
+
+var lunchTimeEvent = function(){
+    lunchTime = lunchTimeSelector.value;
+    getCatPic();
+};
+
+lunchTimeSelector.addEventListener("change", lunchTimeEvent);
+
+var napTimeSelector = document.getElementById("napTimeSelector");
+
+var napTimeEvent = function(){
+    napTime = napTimeSelector.value;
+    getCatPic();
+};
+
+napTimeSelector.addEventListener("change", napTimeEvent);
