@@ -85,6 +85,7 @@ setInterval( showCurrentTime, 1000);
 
 var isPartyTime = false;
 var partyEvent = function(){
+    console.log('im in boi');
    //check isPartyTime
    if (isPartyTime === false){ 
         partyTimeButton.innerText = "PARTY TIME!";
@@ -93,11 +94,13 @@ var partyEvent = function(){
         // set time to partyTime so the lolCat clock 
         //image and message update to the partyTime image and message
         time = partyTime; 
+        getCatPic();
     } else { 
         partyTimeButton.innerText = "PARTY OVER!";
         isPartyTime = false; 
         partyTimeButton.style.backgroundColor="pink";
         time = new Date().getHours(); 
+        getCatPic();
     }
  
 };
